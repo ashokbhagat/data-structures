@@ -7,9 +7,12 @@ public class LinkedListDemo {
         sll.insert(8);
         sll.insert(1);
         sll.insert(10);
-
+        
         sll.insertAtPosition(25, 0);
 
+        sll.printList();
+
+        sll.delete(10);
         sll.printList();
     }
 
@@ -79,13 +82,38 @@ class SinglyLinkedList {
 
     }
 
+    public boolean delete(int data){
+        Node currNode = head;
+        Node prevNode = null;
+
+        if(head !=null && head.data == data){
+            head = head.next;
+            return true;
+        }
+
+        while (currNode != null) {
+           
+            if(currNode.data == data){
+              prevNode.next = currNode.next;
+              return true;
+            }
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+        System.out.println("ERROR : Element not found !!!");
+        return false;
+    }
+
     public void printList() {
         Node currNode = head;
-
+        System.out.println();
+        System.out.print("=========================");
         while (currNode != null) {
             System.out.print(currNode.data + " ");
             currNode = currNode.next;
         }
+        
+        System.out.print("=========================");
 
     }
 }
